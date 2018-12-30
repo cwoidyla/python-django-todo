@@ -21,3 +21,14 @@ how to initiate django project
 > cd todolist
 > python manage.py startapp todos
 > python manage.py runserver
+
+how to initiate django database
+> python manage.py migrate # adds django tables to database specified in settings.py
+> python manage.py makemigrations todos # adds django table specified in todos/models.py after todos is declared in settings.py
+> python manage.py sqlmigrate todos 0001
+> python manage.py migrate
+
+how to add admin user account
+> python manage.py createsuperuser --username=conrad --email=conrad@gmail.com
+> python manage.py runserver
+
