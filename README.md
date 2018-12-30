@@ -20,4 +20,4 @@ how to initiate django project
 > django-admin startproject todolist
 > cd todolist
 > python manage.py startapp todos
->
+> python manage.py runserver
