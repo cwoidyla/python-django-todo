@@ -1,0 +1,88 @@
+Make sure you have a relatively current version of Python installed (say 3.6 or 3.7).
+
+Make sure you have Oracle client software installed (Oracle Instant Client "Basic" or "Basic Light", or any Oracle database or full client installation).
+
+Download the appropriate version of the Python cx_Oracle driver here: https://pypi.org/project/cx_Oracle/#files
+
+For example, if you have installed Python 3.7, download the file "cx_Oracle-7.0.0-cp37m-win_amd64.whl".
+
+Install the .whl file with pip:
+
+    $ pip install cx_Oracle-7.0.0-cp37m-win_amd64.whl
+
+Make sure you have appropriate entries in your tnsnames.ora file. The file should be located in your Oracle client or database installation. For me, it is C:\oraclexe\app\oracle\product\11.2.0\server\network\ADMIN...
+
+GPDV1 =
+
+  (DESCRIPTION =
+
+    (ADDRESS_LIST =
+
+      (ADDRESS = (PROTOCOL = tcp)(HOST = gpdv1)(PORT = 1521))
+
+    )
+
+    (CONNECT_DATA =
+
+      (SID = gpdv1)(UR = A)(SERVICE_NAME = gpdv1..world)
+
+    )
+
+  )
+
+GPQA1 =
+
+  (DESCRIPTION =
+
+    (ADDRESS_LIST =
+
+      (ADDRESS = (PROTOCOL = tcp)(HOST = gpqa1)(PORT = 1522))
+
+    )
+
+    (CONNECT_DATA =
+
+      (SID = gpqa1)(UR = A)(SERVICE_NAME = gpqa1..world)
+
+    )
+
+  )
+
+GPPR1 =
+
+  (DESCRIPTION =
+
+    (ADDRESS_LIST =
+
+      (ADDRESS = (PROTOCOL = tcp)(HOST = gppr1)(PORT = 1521))
+
+    )
+
+    (CONNECT_DATA =
+
+      (SID = gppr1)(UR = A)(SERVICE_NAME = gppr1..world)
+
+    )
+
+  )
+
+
+At this point, you should be able to connect to Oracle with Python:
+
+
+import cx_Oracle
+
+conn = cx_Oracle.connect("<Oracle username>", "<password>", "GPDV1")
+sql = "SELECT * FROM table WHERE id = '9106'"
+cur = conn.cursor()
+cur.execute(sql)
+
+for item in cur:
+
+    print(item)
+
+cur.close()
+
+conn.close()
+
+For more information on the driver installation, look here: https://cx-oracle.readthedocs.io/en/latest/installation.html#quick-start-cx-oracle-installation
